@@ -1,0 +1,17 @@
+{% extends "homepage.html" %} {% block titulo %} FakePinterest - {{usuario}} {%
+endblock %} {% block body %}
+
+<body>
+  {% include "navbar.html" %}
+
+  <h1>Perfil do usuário: {{usuario.username}}</h1>
+
+  {% if form %}
+  <form method="POST" enctype="multipart/form-data">
+    {{ form.csrf_token }} {{ form.foto() }} {{ form.botao_confirmacao() }}
+  </form>
+  {% endif %} {% for post in usuario.posts %}
+  <img src="{{url_for('static', filename='fotos_posts/'~post.imagem)}}" />{%
+  endfor %}
+</body>
+{% endblock %}
